@@ -77,27 +77,35 @@ public class Register extends AppCompatActivity {
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String regname      = name.getText().toString().trim();
-                String reglastname  = lastname.getText().toString().trim();
-                String regbirthdate = birthdate.getText().toString().trim();
-                String regemail     = email.getText().toString().trim();
-                String reguname     = username.getText().toString().trim();
-                String regpass      = password.getText().toString().trim();
+                final String regname = name.getText().toString().trim();
+                String reglastname   = lastname.getText().toString().trim();
+                String regbirthdate  = birthdate.getText().toString().trim();
+                String regemail      = email.getText().toString().trim();
+                String reguname      = username.getText().toString().trim();
+                String regpass       = password.getText().toString().trim();
+                final User newuser = new User(regname,reglastname,regbirthdate,regemail,reguname);
+                if(newuser.RegValidator())
+                {
+                    ayth.createUserWithEmailAndPassword(regemail,regpass).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            String uid  = ayth.getCurrentUser().getUid();
 
-                ayth.createUserWithEmailAndPassword(regemail,regpass).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                         String uid  = ayth.getCurrentUser().getUid();
+                            //save info to database after success register!!
+                            dbref.child("USERS").child(uid).setValue(newuser);
+                        }
+                    });
 
-                        //save info to database after success register!!
-                        dbref.child("USERS").child(uid).setValue("45");
-                    }
-                });
+                }else
+                {
+                    Toast.makeText(Register.this, "Please check your inputs!!!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -107,4 +115,6 @@ public class Register extends AppCompatActivity {
 
 
     }
+
+
 }

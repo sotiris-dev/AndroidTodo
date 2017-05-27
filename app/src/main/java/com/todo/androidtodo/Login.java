@@ -43,18 +43,8 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 EditText email = (EditText) findViewById(R.id.Email_login);
                 EditText pass = (EditText) findViewById(R.id.Password_login);
-                auth = FirebaseAuth.getInstance();
-                auth.signInWithEmailAndPassword(email.getText().toString(),pass.getText().toString()).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        //redirect to main app
-                    }
-                });
+
+
             }
         });
 

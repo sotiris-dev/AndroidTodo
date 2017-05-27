@@ -90,10 +90,10 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:background="@android:color/holo_green_dark"
-                            android:elevation="10dp"
+                            android:elevation="22dp"
                             android:gravity="center"
                             android:text="Login"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
 
                     </android.support.design.widget.TextInputLayout>
 
