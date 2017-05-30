@@ -78,11 +78,11 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String regname = name.getText().toString().trim();
-                String reglastname   = lastname.getText().toString().trim();
-                String regbirthdate  = birthdate.getText().toString().trim();
-                String regemail      = email.getText().toString().trim();
-                String reguname      = username.getText().toString().trim();
-                String regpass       = password.getText().toString().trim();
+                final String reglastname   = lastname.getText().toString().trim();
+                final String regbirthdate  = birthdate.getText().toString().trim();
+                final String regemail      = email.getText().toString().trim();
+                final String reguname      = username.getText().toString().trim();
+                final String regpass       = password.getText().toString().trim();
                 final User newuser = new User(regname,reglastname,regbirthdate,regemail,reguname);
                 if(newuser.RegValidator())
                 {
