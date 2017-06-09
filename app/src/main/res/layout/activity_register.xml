@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    app:layout_collapseParallaxMultiplier="0.8">
+    app:layout_collapseParallaxMultiplier="0.8"
+    android:background="@color/lightgreen">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
                 android:ems="10"
                 android:gravity="center_horizontal|center"
                 android:hint="Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_marginTop="35dp"/>
 
             <EditText
                 android:id="@+id/lastname"
@@ -34,7 +36,8 @@
                 android:ems="10"
                 android:gravity="center_horizontal|center"
                 android:hint="Lastname"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_marginTop="35dp"/>
 
             <EditText
                 android:id="@+id/birthdate"
@@ -43,7 +46,8 @@
                 android:layout_gravity="center_vertical|center_horizontal|center"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Birthdate" />
+                android:hint="Birthdate"
+                android:layout_marginTop="35dp"/>
 
             <EditText
                 android:id="@+id/email"
@@ -53,7 +57,8 @@
                 android:ems="10"
                 android:gravity="center_horizontal|center"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="35dp"/>
 
             <EditText
                 android:id="@+id/username"
@@ -63,7 +68,8 @@
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal|center"
                 android:hint="Username"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_marginTop="35dp"/>
 
             <EditText
                 android:id="@+id/password"
@@ -73,12 +79,16 @@
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal|center"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:layout_marginTop="35dp"/>
 
             <Button
                 android:id="@+id/btnregister"
+                style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/com_facebook_button_background_color"
                 android:text="register" />
 
         </LinearLayout>

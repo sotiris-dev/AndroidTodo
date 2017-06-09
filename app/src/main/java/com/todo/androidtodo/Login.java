@@ -26,6 +26,11 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     Button btnlogin;
     Button btnregister;
+
+    @Override
+    public void onBackPressed() {
+        //disable going back to lonin activity
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
