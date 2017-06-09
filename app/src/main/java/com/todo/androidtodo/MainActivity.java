@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //handles the topbar actions
     public boolean onOptionsItemSelected(MenuItem item) {
 
         //handle presses on the action bar items
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //display the addtask form
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
                         if(a.getText().toString().length() < 17){
                             Toast.makeText(MainActivity.this, "At least 6 chars!!!", Toast.LENGTH_LONG).show();
                         }else{
+                            //save task object with a new firebase key
                             dbref.child("USERS").child(UserId).child("TASKS").child(key).setValue(a);
+                            //close the dialog
                             dialog.cancel();
                         }
 
@@ -119,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
         listview = (ListView)findViewById(R.id.list);
 
         final DatabaseReference db2 = dbref.child("USERS").child(UserId).child("TASKS");
-        final int listvieworder= 1 ;
+        final int listvieworder= 1;
+        //connect the listview adapter with the gui
         final FirebaseListAdapter<Task> fadpt = new FirebaseListAdapter<Task>(
                 this,
                 Task.class,
@@ -151,14 +155,16 @@ public class MainActivity extends AppCompatActivity {
                 textview.setText(textpost);
 
                 final char donestatus = model.getText().toString().charAt(10);
-
+                //if is undone make the text white and uncheck the checkbutton
                 if(donestatus == 'u'){
                     done.setChecked(false);
                     textview.setTextColor(Color.parseColor("#000000"));
                 }else{
+                    //if is done make the text green and make checkbox checked
                     done.setChecked(true);
                     textview.setTextColor(Color.parseColor("#33cc33"));
                 }
+                //when checkbox pressed, change the value on the database
                 done.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -175,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         dbref.child("USERS").child(UserId).child("TASKS").child(model.getId()).setValue(newtask);
                     }
                 });
-
+                //dspaly the modal for change text to a task
                 pencil.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -221,16 +227,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         listview.setAdapter(fadpt);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String name = (String) parent.getItemAtPosition(position);
-                Toast toast = Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+        
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.Calendar;
  */
 
 public class Date {
-
+    //return the current day in format dd/mm/yy
     public static String getDate()
     {
 

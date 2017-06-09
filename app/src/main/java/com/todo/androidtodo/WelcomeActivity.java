@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+//activity that display some info in welcome page
 public class WelcomeActivity extends AppCompatActivity{
 
     private ViewPager viewPager;

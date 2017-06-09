@@ -45,6 +45,7 @@ public class Register extends AppCompatActivity {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         final DatabaseReference dbref = db.getReference();
 
+        //display the calendar modal
         birthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,7 +5,7 @@ import java.util.Calendar;
 /**
  * Created by ubuntu on 7/6/2017.
  */
-
+//this class is for Tasks objects tha will be saved on firebase
 public class Task {
 
     private String  text;

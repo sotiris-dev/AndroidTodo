@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
         btnregister = (Button) findViewById(R.id.Button_Register);
 
 
-
+        //onclick authenticate with firebase
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +55,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         })
+                        //if authentication is success display the main app
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
@@ -66,7 +67,7 @@ public class Login extends AppCompatActivity {
         });
 
 
-
+        //go to register activity
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
