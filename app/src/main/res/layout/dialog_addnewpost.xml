@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:padding="18dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text="Add New Post"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/postText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.15"
+        android:ems="10"
+        android:gravity="center_horizontal|center"
+        android:hint="Write your new task"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/submitnewtask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_marginTop="20dp"
+        android:background="@color/dot_dark_screen1"
+        android:gravity="center_horizontal|center"
+        android:text="Add"
+        android:textColor="@android:color/white" />
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.todo.androidtodo;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
@@ -13,8 +14,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import org.json.JSONObject;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,13 +81,13 @@ public class Register extends AppCompatActivity {
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String regname = name.getText().toString().trim();
+                final String regname       = name.getText().toString().trim();
                 final String reglastname   = lastname.getText().toString().trim();
                 final String regbirthdate  = birthdate.getText().toString().trim();
                 final String regemail      = email.getText().toString().trim();
                 final String reguname      = username.getText().toString().trim();
                 final String regpass       = password.getText().toString().trim();
-                final User newuser = new User(regname,reglastname,regbirthdate,regemail,reguname);
+                final User newuser         = new User(regname,reglastname,regbirthdate,regemail,reguname);
                 if(newuser.RegValidator())
                 {
                     ayth.createUserWithEmailAndPassword(regemail,regpass).addOnFailureListener(new OnFailureListener() {
@@ -97,7 +101,13 @@ public class Register extends AppCompatActivity {
                             String uid  = ayth.getCurrentUser().getUid();
 
                             //save info to database after success register!!
-                            dbref.child("USERS").child(uid).setValue(newuser);
+                            dbref.child("USERS").child(uid).setValue(newuser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Intent aint = new Intent(Register.this, MainActivity.class);
+                                    startActivity(aint);
+                                }
+                            });
                         }
                     });
 

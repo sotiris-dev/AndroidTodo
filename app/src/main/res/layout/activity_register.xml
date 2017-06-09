@@ -32,7 +32,7 @@
                 android:layout_gravity="center_vertical|center_horizontal|center"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Password" />
+                android:hint="Lastname" />
 
             <EditText
                 android:id="@+id/birthdate"

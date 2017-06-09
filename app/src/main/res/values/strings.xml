@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidTodo</string>
+    <string name="app_name">Android Todo List</string>
     <string name="title_activity_register">Sign in</string>
 
     <!-- Strings related to login -->
@@ -14,4 +14,28 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_main_app">MainApp</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="Welcome_Screen">Intro Slider</string>
+    <string name="title_activity_welcome">Welcome Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+
+    <string name="slide_1_title">Welcome to our application</string>
+    <string name="slide_1_desc">Organize your dαily needs , Customize yοur tasks and liabilities via a well designed and and fully operational todo list organizer!</string>
+
+    <string name="slide_2_title">Using New technologies</string>
+    <string name="slide_2_desc">We use firebase as realtime database taking advantage of the new technology database as a service, Serving multiple users with lots of accounts!</string>
+
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+    <string name="action_settings">About</string>
+    <string name="logout">SignOut</string>
+
 </resources>

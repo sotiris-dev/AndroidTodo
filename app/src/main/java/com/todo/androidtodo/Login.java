@@ -31,8 +31,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
+        auth = FirebaseAuth.getInstance();
         btnlogin = (Button) findViewById(R.id.Button_login);
         btnregister = (Button) findViewById(R.id.Button_Register);
 
@@ -44,7 +43,20 @@ public class Login extends AppCompatActivity {
                 EditText email = (EditText) findViewById(R.id.Email_login);
                 EditText pass = (EditText) findViewById(R.id.Password_login);
 
-
+                auth.signInWithEmailAndPassword(email.getText().toString().trim(),pass.getText().toString().trim())
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                Intent aint = new Intent(Login.this, MainActivity.class);
+                                startActivity(aint);
+                            }
+                        });
             }
         });
 

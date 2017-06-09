@@ -9,15 +9,17 @@ import java.util.Calendar;
 public class Task {
 
     private String  text;
-    private String  date;
-    private String  done;
+    private String id;
 
-    public Task(String text)
+    public Task()
     {
-        this.done = "false";
-        this.text = text;
-        this.date = this.date();
 
+
+    }
+    public Task(String id, String text)
+    {
+        this.id = id;
+        this.text = text;
     }
 
     public String getText()
@@ -27,22 +29,14 @@ public class Task {
     public void setText(String text){
         this.text = text;
     }
-    public String getDate()
+    public String getId(){
+        return this.id ;
+    }
+    public void setId(String id)
     {
-        return this.date;
+        this.id = id;
     }
-    public void setDate(){
-        this.date = date;
-    }
-    public String getDone()
-    {
-        return this.done;
-    }
-    public void setDone(String done){
-        this.done = done;
-    }
-
-    private String date()
+    private static String date()
     {
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
