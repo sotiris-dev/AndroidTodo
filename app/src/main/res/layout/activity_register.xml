@@ -21,18 +21,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Name" />
+                android:ems="10"
+                android:gravity="center_horizontal|center"
+                android:hint="Name"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Lastname" />
+                android:ems="10"
+                android:gravity="center_horizontal|center"
+                android:hint="Lastname"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/birthdate"
@@ -48,27 +50,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Email" />
+                android:ems="10"
+                android:gravity="center_horizontal|center"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_marginBottom="10dp"
+                android:ems="10"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Username" />
+                android:hint="Username"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal|center"
-                android:layout_marginBottom="10dp"
+                android:ems="10"
                 android:gravity="center_vertical|center_horizontal|center"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/btnregister"

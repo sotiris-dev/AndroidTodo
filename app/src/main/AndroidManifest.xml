@@ -25,7 +25,7 @@
         <activity android:name=".Register"></activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_welcome"
+            android:label="Todo Application"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".About"></activity>
     </application>
