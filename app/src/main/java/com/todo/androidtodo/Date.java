@@ -15,8 +15,8 @@ public class Date {
             int mYear = c.get(Calendar.YEAR);
             int mMonth = c.get(Calendar.MONTH);
             int mDay = c.get(Calendar.DAY_OF_MONTH);
-            String mday2="";
-            String month2="";
+            String mday2= "";
+            String month2= "";
 
 
             if(mMonth < 10){
@@ -27,9 +27,10 @@ public class Date {
             if(mDay < 10){
                  mday2 = "0"+mDay;
             }else{
-                 month2 = ""+mDay;
+                 mday2 = ""+mDay;
             }
-            return mday2+"/"+month2+"/"+mYear;
+            String dayformated = mday2+"/"+month2+"/"+mYear;
+        return dayformated;
 
     }
 }

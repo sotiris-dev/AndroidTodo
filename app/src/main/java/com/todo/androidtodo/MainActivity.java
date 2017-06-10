@@ -118,11 +118,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        listview = (ListView)findViewById(R.id.list);
+    listview = (ListView)findViewById(R.id.list);
 
         final DatabaseReference db2 = dbref.child("USERS").child(UserId).child("TASKS");
-        final int listvieworder= 1;
         //connect the listview adapter with the gui
         final FirebaseListAdapter<Task> fadpt = new FirebaseListAdapter<Task>(
                 this,
@@ -133,27 +131,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void populateView(View v, final Task model, final int position) {
 
-                TextView datetext = (TextView)v.findViewById(date);
-                CheckBox done = (CheckBox)v.findViewById(checkBox);
-                ImageButton del = (ImageButton)v.findViewById(delete);
-                TextView textview = (TextView)v.findViewById(text);
+                TextView datetext  = (TextView)v.findViewById(date);
+                CheckBox done      = (CheckBox)v.findViewById(checkBox);
+                ImageButton del    = (ImageButton)v.findViewById(delete);
+                TextView textview  = (TextView)v.findViewById(text);
                 ImageButton pencil = (ImageButton)v.findViewById(edit);
 
-                textview.setText(model.getText());
+
                 del.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dbref.child("USERS").child(UserId).child("TASKS").child(model.getId()).removeValue();
                     }
                 });
+
+
+
                 /// implement edit function
-
-
-                final String date = model.getText().substring(0, 10);
+                final String date = model.getText().substring(0,10);
                 datetext.setText(date);
-                final String textpost = textview.getText().toString().trim().substring(11, textview.getText().toString().length());
+                final String textpost = model.getText().substring(11);
                 textview.setText(textpost);
 
+                //read the done status from encoded text!
                 final char donestatus = model.getText().toString().charAt(10);
                 //if is undone make the text white and uncheck the checkbutton
                 if(donestatus == 'u'){
@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 done.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //replace a new Task with other done status encoded into it's text!!!!
                         Task newtask = new Task();
                         newtask.setId(model.getId());
                         char newdonestatus;
@@ -177,10 +178,13 @@ public class MainActivity extends AppCompatActivity {
                             newdonestatus = 'u';
                         }
                         String newdonestatus2 = newdonestatus+"";
+                        //Encode the new text for new task to save on the Firebase Database
                         newtask.setText(date+newdonestatus2+textpost);
+                        //Replace the old task with the new task thas has other done status!!!
                         dbref.child("USERS").child(UserId).child("TASKS").child(model.getId()).setValue(newtask);
                     }
                 });
+
                 //dspaly the modal for change text to a task
                 pencil.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -190,44 +194,42 @@ public class MainActivity extends AppCompatActivity {
                         edit.setContentView(R.layout.dialogtask);
                         final EditText newtext = (EditText)edit.findViewById(text);
                         Button savebtn = (Button)edit.findViewById(save);
-                        String tasktext = model.getText().substring(11, model.getText().length());
-                        final String taskdatewithstatus = model.getText().substring(0,11);
+
+                        //Retrive the date and the done status from the old task before edit
+                        final String taskdate  = model.getText().substring(0,10);
+                        final char taskdone    = model.getText().charAt(10);
+                        String tasktext  = model.getText().substring(11);
                         newtext.setText(tasktext);
-
-
+                        //Pop up the modal dialog
                         edit.show();
-
+                        //save button lsitener
                         savebtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String newtasktext = taskdatewithstatus + newtext.getText().toString().trim();
-                                Task newtask = new Task();
+                                //new String text inputed by user \\trim the spaces
+                                String neweditedtext = newtext.getText().toString().trim();
+                                String newtasktext   = taskdate+taskdone+neweditedtext;
+                                //validate text length
                                 if(newtasktext.length() < 17){
                                     Toast.makeText(MainActivity.this, "At least 6 chars!!!", Toast.LENGTH_LONG).show();
-
                                 }else{
+                                    //Make a new Task object
+                                    Task newtask = new Task();
                                     newtask.setId(model.getId());
                                     newtask.setText(newtasktext);
+                                    //put the new edited task into firebase and replace the old one
                                     dbref.child("USERS").child(UserId).child("TASKS").child(model.getId()).setValue(newtask);
                                     newtext.setText("");
-
                                     edit.cancel();
                                 }
-
                             }
                         });
-
                     }
-
                 });
-
-
-
             }
         };
-
-        listview.setAdapter(fadpt);
-        
-    }
+    //Connect the adapter to listview
+    listview.setAdapter(fadpt);
+   }
 
 }
