@@ -33,16 +33,16 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText name      = (EditText)findViewById(R.id.name);
-        final EditText lastname  = (EditText)findViewById(R.id.lastname);
-        final EditText birthdate = (EditText)findViewById(R.id.birthdate);
+        final EditText name           = (EditText)findViewById(R.id.name);
+        final EditText lastname       = (EditText)findViewById(R.id.lastname);
+        final EditText birthdate      = (EditText)findViewById(R.id.birthdate);
         birthdate.setInputType(InputType.TYPE_NULL);
-        final EditText email     = (EditText)findViewById(R.id.email);
-        final EditText username  = (EditText)findViewById(R.id.username);
-        final EditText password  = (EditText)findViewById(R.id.password);
-        Button btnregister = (Button)findViewById(R.id.btnregister);
-        final FirebaseAuth ayth = FirebaseAuth.getInstance();
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        final EditText email          = (EditText)findViewById(R.id.email);
+        final EditText username       = (EditText)findViewById(R.id.username);
+        final EditText password       = (EditText)findViewById(R.id.password);
+        Button btnregister            = (Button)findViewById(R.id.btnregister);
+        final FirebaseAuth ayth       = FirebaseAuth.getInstance();
+        FirebaseDatabase db           = FirebaseDatabase.getInstance();
         final DatabaseReference dbref = db.getReference();
 
         //display the calendar modal
@@ -119,13 +119,5 @@ public class Register extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
     }
-
-
 }

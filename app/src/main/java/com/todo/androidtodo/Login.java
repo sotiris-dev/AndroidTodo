@@ -1,5 +1,7 @@
 package com.todo.androidtodo;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -48,21 +50,35 @@ public class Login extends AppCompatActivity {
                 EditText email = (EditText) findViewById(R.id.Email_login);
                 EditText pass = (EditText) findViewById(R.id.Password_login);
 
-                auth.signInWithEmailAndPassword(email.getText().toString().trim(),pass.getText().toString().trim())
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        })
-                        //if authentication is success display the main app
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Intent aint = new Intent(Login.this, MainActivity.class);
-                                startActivity(aint);
-                            }
-                        });
+                final ProgressDialog dialog = new ProgressDialog(Login.this);
+                dialog.setTitle("Login");
+                dialog.setMessage("Loading...Plz wait....");
+                dialog.setCancelable(false);
+
+
+
+                if(email.getText().toString().trim().length() > 5 && pass.getText().toString().trim().length() > 5) {
+                    dialog.show();
+                    auth.signInWithEmailAndPassword(email.getText().toString().trim(), pass.getText().toString().trim())
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    dialog.cancel();
+                                    Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            //if authentication is success display the main app
+                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    dialog.cancel();
+                               Intent aint = new Intent(Login.this, MainActivity.class);
+                               startActivity(aint);
+                                }
+                            });
+                }else {
+                    Toast.makeText(Login.this, "Wrong inputs", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
