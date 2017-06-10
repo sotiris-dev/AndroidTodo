@@ -1,19 +1,16 @@
 package com.todo.androidtodo;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,12 +38,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //disable going back to lonin activity
+
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_about_contacts, menu);
-
         return true;
-
     }
 
     //handles the topbar actions
@@ -56,9 +52,27 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case logout:
-                FirebaseAuth.getInstance().signOut();
-                Intent aint1 = new Intent(MainActivity.this, Login.class);
-                startActivity(aint1);
+                //popup a logout loading view
+                final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                dialog.setTitle("Logout");
+                dialog.setMessage("Logout...Plz wait....");
+                dialog.setCancelable(false);
+                dialog.show();
+
+                //logout and redirect to Login page in 5 sec
+                new java.util.Timer().schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                dialog.cancel();
+                                FirebaseAuth.getInstance().signOut();
+                                Intent aint1 = new Intent(MainActivity.this, Login.class);
+                                startActivity(aint1);
+                            }
+                        },
+                        3200
+                );
+
                 break;
             case about:
                 Intent  aint2 = new Intent(MainActivity.this, About.class);

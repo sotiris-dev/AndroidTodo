@@ -1,6 +1,7 @@
 package com.todo.androidtodo;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -91,9 +92,16 @@ public class Register extends AppCompatActivity {
                 final User newuser         = new User(regname,reglastname,regbirthdate,regemail,reguname);
                 if(newuser.RegValidator())
                 {
+                    //register loader ......
+                    final ProgressDialog dialog = new ProgressDialog(Register.this);
+                    dialog.setTitle("Register new user");
+                    dialog.setMessage("Register...Plz wait....");
+                    dialog.setCancelable(false);
+                    dialog.show();
                     ayth.createUserWithEmailAndPassword(regemail,regpass).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            dialog.cancel();
                             Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -105,6 +113,7 @@ public class Register extends AppCompatActivity {
                             dbref.child("USERS").child(uid).setValue(newuser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    dialog.cancel();
                                     Intent aint = new Intent(Register.this, MainActivity.class);
                                     startActivity(aint);
                                 }
